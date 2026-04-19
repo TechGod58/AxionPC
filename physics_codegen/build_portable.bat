@@ -1,10 +1,14 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 cd /d "%~dp0"
 
 set "APP_NAME=AxionPhysicsCodegen"
+set "APP_VERSION=1.0.0"
 set "DIST_DIR=dist\%APP_NAME%"
+set "MSI_PATH=dist\%APP_NAME%-Setup.msi"
 set "ZIP_PATH=dist\%APP_NAME%_portable.zip"
+set "WXS_FILE=installer\%APP_NAME%.wxs"
+set "HARVEST_WXS=installer\AppPayload.wxs"
 
 where python >nul 2>nul
 if errorlevel 1 (
@@ -25,7 +29,8 @@ if errorlevel 1 (
   )
 )
 
-echo Building portable Windows bundle...
+echo.
+echo [1/4] Building PyInstaller bundle...
 python -m PyInstaller ^
   --noconfirm ^
   --clean ^
@@ -45,7 +50,7 @@ python -m PyInstaller ^
   "tools\windows_gui_entry.py"
 
 if errorlevel 1 (
-  echo Portable build failed.
+  echo PyInstaller build failed.
   pause
   exit /b 1
 )
@@ -57,24 +62,84 @@ if not exist "%DIST_DIR%" (
 )
 
 copy /Y "README.txt" "%DIST_DIR%\README.txt" >nul
-copy /Y "tools\Run_PhysicsCodegen.bat" "%DIST_DIR%\Run_PhysicsCodegen.bat" >nul
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command "Compress-Archive -Path '%DIST_DIR%\*' -DestinationPath '%ZIP_PATH%' -Force"
+echo.
+echo [2/4] Creating portable zip...
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "Get-ChildItem -Path '%DIST_DIR%' -Recurse | Unblock-File; Compress-Archive -Path '%DIST_DIR%\*' -DestinationPath '%ZIP_PATH%' -Force"
 if errorlevel 1 (
-  echo Build succeeded but ZIP packaging failed.
-  echo You can still copy this folder directly:
-  echo   %CD%\%DIST_DIR%
-  pause
-  exit /b 0
+  echo Warning: portable zip creation failed. MSI build will still be attempted.
 )
 
 echo.
-echo Portable build complete.
-echo Folder: %CD%\%DIST_DIR%
-echo Zip:    %CD%\%ZIP_PATH%
-echo Launch on any Windows PC using:
-echo   Run_PhysicsCodegen.bat
-echo or:
-echo   %APP_NAME%.exe
+echo [3/4] Checking for WiX toolset...
+where wix >nul 2>nul
+if errorlevel 1 (
+  echo WiX toolset not found. Installing via dotnet tool...
+  where dotnet >nul 2>nul
+  if errorlevel 1 (
+    echo dotnet SDK not found. Install .NET 8 SDK from:
+    echo   https://dotnet.microsoft.com/download
+    echo Then run this script again.
+    pause
+    exit /b 1
+  )
+  dotnet tool install --global wix
+  if errorlevel 1 (
+    echo Failed to install WiX. You can install manually with:
+    echo   dotnet tool install --global wix
+    pause
+    exit /b 1
+  )
+  where wix >nul 2>nul
+  if errorlevel 1 (
+    echo WiX installed, but not yet on PATH for this shell.
+    echo Close this window and re-run build_portable.bat.
+    pause
+    exit /b 1
+  )
+)
+
+wix eula accept wix7 >nul 2>nul
+
+echo.
+echo [4/4] Building MSI installer...
+
+if not exist "installer" mkdir "installer"
+
+python "tools\generate_wix_payload.py" "%DIST_DIR%" "%HARVEST_WXS%"
+
+if errorlevel 1 (
+  echo Payload manifest generation failed.
+  pause
+  exit /b 1
+)
+
+wix build ^
+  -arch x64 ^
+  -d AppVersion=%APP_VERSION% ^
+  -d SourceDir="%DIST_DIR%" ^
+  -o "%MSI_PATH%" ^
+  "%WXS_FILE%" ^
+  "%HARVEST_WXS%"
+
+if errorlevel 1 (
+  echo WiX build failed.
+  pause
+  exit /b 1
+)
+
+echo.
+echo ============================================================
+echo Build complete.
+echo ============================================================
+echo   MSI installer (primary):  %CD%\%MSI_PATH%
+echo   Portable folder:          %CD%\%DIST_DIR%
+echo   Portable zip (secondary): %CD%\%ZIP_PATH%
+echo.
+echo To distribute: share the MSI. Users double-click to install.
+echo Launches from Start Menu as "Axion Physics Codegen" with no
+echo console window and no batch file in the shortcut path.
+echo ============================================================
 pause
 exit /b 0

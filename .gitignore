@@ -19,6 +19,7 @@ env/
 build/
 dist/
 *.spec
+*.wixpdb
 
 # Logs and temp
 *.log
@@ -32,3 +33,4 @@ dist/
 # Project-specific generated output
 physics_codegen/generated/*.py
 physics_codegen/generated/*.json
+physics_codegen/installer/AppPayload.wxs

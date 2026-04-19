@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  AxionPhysicsCodegen installer (WiX Toolset v4/v5).
+
+  Per-user install: no admin prompt, installs to %LOCALAPPDATA%\Programs\.
+  Start Menu shortcut points directly at AxionPhysicsCodegen.exe so there is
+  no .bat file and no console window.
+
+  Build:
+    wix build -arch x64 ^
+      -d AppVersion=1.0.0 ^
+      -d SourceDir=dist\AxionPhysicsCodegen ^
+      -o dist\AxionPhysicsCodegen-Setup.msi ^
+      AxionPhysicsCodegen.wxs
+
+  UpgradeCode is a fixed GUID. Do not change it across versions, or MSI
+  will treat new versions as unrelated products.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <Package
+      Name="Axion Physics Codegen"
+      Manufacturer="Axion Industries"
+      Version="$(AppVersion)"
+      UpgradeCode="6f3c2a10-7c5e-4d3a-9f1b-2e8a4d5c9b71"
+      Scope="perUser"
+      Compressed="yes">
+
+    <MajorUpgrade
+        DowngradeErrorMessage="A newer version of [ProductName] is already installed."
+        Schedule="afterInstallInitialize" />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="ProgramsDir" Name="Programs">
+        <Directory Id="INSTALLFOLDER" Name="AxionPhysicsCodegen" />
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="AppShortcutFolder" Name="Axion Physics Codegen" />
+    </StandardDirectory>
+
+    <Feature Id="Main" Title="Axion Physics Codegen" Level="1">
+      <ComponentGroupRef Id="AppPayload" />
+      <ComponentRef Id="AppShortcut" />
+      <ComponentRef Id="AppShortcutFolderCleanup" />
+    </Feature>
+
+    <Component Id="AppShortcut"
+               Directory="AppShortcutFolder"
+               Guid="5b2c8e1d-4a3f-4c8e-b7d2-9f6a1c3e8d04">
+      <Shortcut Id="AppStartMenuShortcut"
+                Name="Axion Physics Codegen"
+                Description="Equation-to-Python converter"
+                Target="[INSTALLFOLDER]AxionPhysicsCodegen.exe"
+                WorkingDirectory="INSTALLFOLDER" />
+      <RemoveFolder Id="AppShortcutFolderRemove"
+                    Directory="AppShortcutFolder"
+                    On="uninstall" />
+      <RegistryValue Root="HKCU"
+                     Key="Software\AxionIndustries\AxionPhysicsCodegen"
+                     Name="shortcut_installed"
+                     Type="integer"
+                     Value="1"
+                     KeyPath="yes" />
+    </Component>
+
+    <Component Id="AppShortcutFolderCleanup"
+               Directory="AppShortcutFolder"
+               Guid="9e1f7a4c-2b6d-4e9a-8c3f-6a5b0d7e2f18">
+      <RemoveFolder Id="AppShortcutFolderCleanupRemove"
+                    Directory="AppShortcutFolder"
+                    On="uninstall" />
+      <RegistryValue Root="HKCU"
+                     Key="Software\AxionIndustries\AxionPhysicsCodegen"
+                     Name="folder_installed"
+                     Type="integer"
+                     Value="1"
+                     KeyPath="yes" />
+    </Component>
+
+  </Package>
+</Wix>
