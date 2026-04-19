@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "kind": "rewriter_corpus",
+  "description": "Parser and rewriter tests. Each case provides raw equation text and asserts what the rewriter produces. Used by tests/run_quantum_corpus.py.",
+  "schema": {
+    "required": ["name", "input"],
+    "optional": ["expect_rewritten_contains", "expect_parse_ok", "notes"]
+  },
+  "cases": [
+    {
+      "name": "density_identity",
+      "input": "Eq(rho, conjugate(Psi)*Psi)",
+      "expect_rewritten_contains": ["Eq(", "conjugate(Psi)", "Psi"],
+      "expect_parse_ok": true
+    },
+    {
+      "name": "commutator_heisenberg_ocr",
+      "input": "1 i ħ ( [ A ^ , H ^ ] ) + ( ∂ A ^ ∂ t )",
+      "expect_rewritten_contains": ["Commutator(A, H)", "Derivative(A, t)"],
+      "expect_parse_ok": true,
+      "notes": "OCR form: division bar dropped from Leibniz notation. Relies on OCR fallback in _rewrite_leibniz_derivatives."
+    },
+    {
+      "name": "sum_plain_ocr",
+      "input": "Sum n 1 N p_n^2/(2*m_n) + V(x1,x2,..,xN,t)",
+      "expect_rewritten_contains": ["Sum(", "(n, 1, N)", "V(x1,x2, xN,t)"],
+      "expect_parse_ok": true
+    },
+    {
+      "name": "unsupported_operator_symbol",
+      "input": "A ⧉ B",
+      "expect_parse_ok": false
+    },
+    {
+      "name": "schrodinger_td_unicode",
+      "input": "i*ℏ*∂Ψ/∂t = -ℏ²/(2*m) * ∂²Ψ/∂x² + V*Psi",
+      "expect_rewritten_contains": ["Derivative(Psi, t)", "Derivative(Psi, x, 2)"],
+      "expect_parse_ok": true,
+      "notes": "Time-dependent Schrödinger. Exercises first- and second-order partial derivatives from Unicode partial-derivative notation."
+    },
+    {
+      "name": "shm_leibniz",
+      "input": "m * d^2 x / dt^2 = -k*x",
+      "expect_rewritten_contains": ["Derivative(x, t, 2)"],
+      "expect_parse_ok": true,
+      "notes": "Simple harmonic motion in Leibniz notation with explicit second-order operator."
+    },
+    {
+      "name": "integral_with_rhs",
+      "input": "Integral sin(x) dx = -cos(x)",
+      "expect_rewritten_contains": ["Integral(sin(x), x)"],
+      "expect_parse_ok": true,
+      "notes": "Separator between integrand and dx survives implicit-multiplication pass that rewrites ') d' to ')*d'."
+    }
+  ]
+}

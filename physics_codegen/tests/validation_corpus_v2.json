@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "kind": "validation_corpus",
+  "description": "Semantic and physical validation tests. Each case provides a SymPy equation plus dimensional metadata and a numerical sampler. Used by tools/qa/run_converter_validation.py.",
+  "schema": {
+    "required": ["name", "equation", "units", "dimension_groups", "sampler", "property", "reference"],
+    "optional": ["notes"]
+  },
+  "cases": [
+    {
+      "name": "density_identity",
+      "equation": "Eq(rho, conjugate(Psi)*Psi)",
+      "units": {"rho": "1", "Psi": "1"},
+      "dimension_groups": [["rho", "Psi"]],
+      "sampler": "density_identity",
+      "property": "residual_zero",
+      "reference": "density_identity"
+    },
+    {
+      "name": "ho_energy_levels",
+      "equation": "Eq(E_n, hbar*omega*(n+1/2))",
+      "units": {"E_n": "J", "hbar": "J*s", "omega": "1/s", "n": "1"},
+      "dimension_groups": [["E_n", "hbar*omega"]],
+      "sampler": "ho_energy",
+      "property": "residual_zero",
+      "reference": "ho_energy"
+    }
+  ]
+}

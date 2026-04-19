@@ -1,0 +1,25 @@
+[
+  {
+    "name": "density_identity",
+    "input": "Eq(rho, conjugate(Psi)*Psi)",
+    "expect_rewritten_contains": ["Eq(", "conjugate(Psi)", "Psi"],
+    "expect_parse_ok": true
+  },
+  {
+    "name": "commutator_heisenberg_ocr",
+    "input": "1 i ħ ( [ A ^ , H ^ ] ) + ( ∂ A ^ ∂ t )",
+    "expect_rewritten_contains": ["Commutator(A, H)", "Derivative(A, t)"],
+    "expect_parse_ok": true
+  },
+  {
+    "name": "sum_plain_ocr",
+    "input": "Sum n 1 N p_n^2/(2*m_n) + V(x1,x2,..,xN,t)",
+    "expect_rewritten_contains": ["Sum(", "(n, 1, N)", "V(x1,x2, xN,t)"],
+    "expect_parse_ok": true
+  },
+  {
+    "name": "unsupported_operator_symbol",
+    "input": "A ⧉ B",
+    "expect_parse_ok": false
+  }
+]

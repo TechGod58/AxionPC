@@ -1,0 +1,33 @@
+{
+  "template": "wave_1d_forced",
+  "target": "c99",
+  "domain": {
+    "L": 1.0,
+    "nx": 401
+  },
+  "params": {
+    "c": 1.0,
+    "gamma": 0.02
+  },
+  "time": {
+    "dt": 0.001,
+    "t_end": 1.0
+  },
+  "bcs": {
+    "type": "dirichlet"
+  },
+  "forcing": {
+    "type": "pulse",
+    "amplitude": 1.0,
+    "x0": 0.5,
+    "sigma": 0.05,
+    "t0": 0.2,
+    "tau": 0.02
+  },
+  "regime": {
+    "reject_unstable": true
+  },
+  "prune": {
+    "threshold": 0.001
+  }
+}

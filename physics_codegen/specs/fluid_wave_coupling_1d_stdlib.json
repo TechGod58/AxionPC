@@ -1,0 +1,28 @@
+{
+  "template": "fluid_wave_coupling_1d",
+  "target": "python_stdlib",
+  "domain": {
+    "L": 1.0,
+    "nx": 401
+  },
+  "time": {
+    "dt": 0.001,
+    "t_end": 1.0
+  },
+  "fluid": {
+    "nu": 0.001
+  },
+  "wave": {
+    "c": 1.0,
+    "gamma": 0.02
+  },
+  "coupling": {
+    "beta": 1.0
+  },
+  "regime": {
+    "reject_unstable": true
+  },
+  "prune": {
+    "threshold": 0.001
+  }
+}

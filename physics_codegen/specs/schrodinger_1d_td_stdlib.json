@@ -1,0 +1,31 @@
+{
+  "template": "schrodinger_1d_td",
+  "target": "python_stdlib",
+  "domain": {
+    "L": 1.0,
+    "nx": 801
+  },
+  "params": {
+    "m": 1.0,
+    "hbar": 1.0
+  },
+  "time": {
+    "dt": 0.0002,
+    "t_end": 0.1
+  },
+  "potential": {
+    "type": "barrier",
+    "V0": 50.0,
+    "a": 0.05,
+    "x0": 0.5
+  },
+  "initial_conditions": {
+    "type": "gaussian_packet",
+    "x0": 0.3,
+    "sigma": 0.03,
+    "k0": 80.0
+  },
+  "prune": {
+    "threshold": 0.001
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "template": "diffusion_1d",
+  "target": "python_stdlib",
+  "domain": {
+    "L": 1.0,
+    "nx": 401
+  },
+  "params": {
+    "alpha": 0.01
+  },
+  "time": {
+    "dt": 0.001,
+    "t_end": 1.0
+  },
+  "bcs": {
+    "type": "dirichlet"
+  },
+  "initial_conditions": {
+    "type": "gaussian",
+    "x0": 0.5,
+    "sigma": 0.05,
+    "amplitude": 1.0
+  },
+  "source": {
+    "type": "none"
+  },
+  "regime": {
+    "reject_unstable": true
+  },
+  "prune": {
+    "threshold": 0.001
+  }
+}

@@ -1,0 +1,22 @@
+template: poisson_2d
+domain:
+  Lx: 1.0
+  Ly: 1.0
+  nx: 101
+  ny: 101
+params:
+  epsilon: 1.0
+bcs:
+  type: dirichlet
+  V_left: 1.0
+  V_right: 0.0
+  V_bottom: 0.0
+  V_top: 0.0
+solver:
+  max_iter: 8000
+  tol: 1.0e-6
+charge_density:
+  type: point
+  ix: 50
+  iy: 50
+  q: 1.0

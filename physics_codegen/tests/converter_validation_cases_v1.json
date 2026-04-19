@@ -1,0 +1,20 @@
+[
+  {
+    "name": "density_identity",
+    "equation": "Eq(rho, conjugate(Psi)*Psi)",
+    "units": {"rho": "1", "Psi": "1"},
+    "dimension_groups": [["rho","Psi"]],
+    "sampler": "density_identity",
+    "property": "residual_zero",
+    "reference": "density_identity"
+  },
+  {
+    "name": "ho_energy_levels",
+    "equation": "Eq(E_n, hbar*omega*(n+1/2))",
+    "units": {"E_n": "J", "hbar": "J*s", "omega": "1/s", "n": "1"},
+    "dimension_groups": [["E_n","hbar*omega"]],
+    "sampler": "ho_energy",
+    "property": "residual_zero",
+    "reference": "ho_energy"
+  }
+]

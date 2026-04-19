@@ -1,0 +1,425 @@
+{
+  "version": 2,
+  "entries": [
+    {
+      "token": "=",
+      "normalized": "=",
+      "python": "sp.Eq(lhs, rhs)",
+      "kind": "relation",
+      "description": "Equation equality is represented as a SymPy Eq object in generated code."
+    },
+    {
+      "token": "≈",
+      "normalized": "=",
+      "python": "sp.Eq(lhs, rhs)",
+      "kind": "relation",
+      "description": "Approximate equality is normalized to standard equation equality for symbolic parsing."
+    },
+    {
+      "token": "\\approx",
+      "normalized": "=",
+      "python": "sp.Eq(lhs, rhs)",
+      "kind": "relation",
+      "description": "LaTeX approximate equality is normalized to standard equation equality."
+    },
+    {
+      "token": "\\,",
+      "normalized": "",
+      "python": "",
+      "kind": "separator",
+      "description": "LaTeX thin-space command is ignored during normalization."
+    },
+    {
+      "token": "\\;",
+      "normalized": "",
+      "python": "",
+      "kind": "separator",
+      "description": "LaTeX medium-space command is ignored during normalization."
+    },
+    {
+      "token": "\\:",
+      "normalized": "",
+      "python": "",
+      "kind": "separator",
+      "description": "LaTeX spacing command is ignored during normalization."
+    },
+    {
+      "token": "\\!",
+      "normalized": "",
+      "python": "",
+      "kind": "separator",
+      "description": "LaTeX negative-space command is ignored during normalization."
+    },
+    {
+      "token": "≃",
+      "normalized": "=",
+      "python": "sp.Eq(lhs, rhs)",
+      "kind": "relation",
+      "description": "Similarity or approximate-equality notation is normalized to standard equation equality."
+    },
+    {
+      "token": "'",
+      "normalized": "_prime",
+      "python": "_prime",
+      "kind": "identifier",
+      "description": "Prime notation is rewritten into a Python-safe identifier suffix such as _prime."
+    },
+    {
+      "token": "+",
+      "normalized": "+",
+      "python": "+",
+      "kind": "operator",
+      "description": "Addition stays the same in Python."
+    },
+    {
+      "token": "-",
+      "normalized": "-",
+      "python": "-",
+      "kind": "operator",
+      "description": "Subtraction stays the same in Python."
+    },
+    {
+      "token": "−",
+      "normalized": "-",
+      "python": "-",
+      "kind": "operator",
+      "description": "Unicode minus is normalized to the ASCII minus sign."
+    },
+    {
+      "token": "*",
+      "normalized": "*",
+      "python": "*",
+      "kind": "operator",
+      "description": "Multiplication stays the same in Python."
+    },
+    {
+      "token": "·",
+      "normalized": "*",
+      "python": "*",
+      "kind": "operator",
+      "description": "Dot multiplication is normalized to Python's * operator."
+    },
+    {
+      "token": "⋅",
+      "normalized": "*",
+      "python": "*",
+      "kind": "operator",
+      "description": "Centered dot multiplication is normalized to Python's * operator."
+    },
+    {
+      "token": "/",
+      "normalized": "/",
+      "python": "/",
+      "kind": "operator",
+      "description": "Division stays the same in Python."
+    },
+    {
+      "token": "^",
+      "normalized": "^",
+      "python": "**",
+      "kind": "operator",
+      "description": "Caret exponent notation is rewritten to Python power syntax."
+    },
+    {
+      "token": "**",
+      "normalized": "**",
+      "python": "**",
+      "kind": "operator",
+      "description": "Python exponent operator."
+    },
+    {
+      "token": "(",
+      "normalized": "(",
+      "python": "(",
+      "kind": "grouping",
+      "description": "Grouping parenthesis is preserved."
+    },
+    {
+      "token": ")",
+      "normalized": ")",
+      "python": ")",
+      "kind": "grouping",
+      "description": "Grouping parenthesis is preserved."
+    },
+    {
+      "token": ",",
+      "normalized": ",",
+      "python": ",",
+      "kind": "separator",
+      "description": "Comma separators are preserved."
+    },
+    {
+      "token": "ρ",
+      "normalized": "rho",
+      "python": "rho",
+      "kind": "identifier",
+      "description": "Greek rho is normalized to the ASCII name rho."
+    },
+    {
+      "token": "ψ",
+      "normalized": "psi",
+      "python": "psi",
+      "kind": "identifier",
+      "description": "Greek psi is normalized to the ASCII name psi."
+    },
+    {
+      "token": "Ψ",
+      "normalized": "Psi",
+      "python": "Psi",
+      "kind": "identifier",
+      "description": "Uppercase Greek Psi is normalized to the ASCII name Psi."
+    },
+    {
+      "token": "φ",
+      "normalized": "phi",
+      "python": "phi",
+      "kind": "identifier",
+      "description": "Greek phi is normalized to the ASCII name phi."
+    },
+    {
+      "token": "λ",
+      "normalized": "lambda",
+      "python": "lambda_",
+      "kind": "identifier",
+      "description": "Greek lambda is normalized to lambda, then made Python-safe as lambda_."
+    },
+    {
+      "token": "μ",
+      "normalized": "mu",
+      "python": "mu",
+      "kind": "identifier",
+      "description": "Greek mu is normalized to the ASCII name mu."
+    },
+    {
+      "token": "π",
+      "normalized": "pi",
+      "python": "sp.pi",
+      "kind": "constant",
+      "description": "Pi becomes the built-in SymPy constant sp.pi."
+    },
+    {
+      "token": "∞",
+      "normalized": "oo",
+      "python": "sp.oo",
+      "kind": "constant",
+      "description": "Infinity is normalized to SymPy's oo constant."
+    },
+    {
+      "token": "ℏ",
+      "normalized": "hbar",
+      "python": "hbar",
+      "kind": "constant",
+      "description": "Planck's reduced constant is normalized to hbar."
+    },
+    {
+      "token": "ħ",
+      "normalized": "hbar",
+      "python": "hbar",
+      "kind": "constant",
+      "description": "Planck's reduced constant is normalized to hbar."
+    },
+    {
+      "token": "√",
+      "normalized": "sqrt",
+      "python": "sp.sqrt(...)",
+      "kind": "function",
+      "description": "Square root is normalized to the SymPy sqrt function."
+    },
+    {
+      "token": "\\frac",
+      "normalized": "/",
+      "python": "(numerator)/(denominator)",
+      "kind": "function",
+      "description": "LaTeX fractions are rewritten into parenthesized numerator and denominator division."
+    },
+    {
+      "token": "\\left",
+      "normalized": "",
+      "python": "",
+      "kind": "grouping",
+      "description": "LaTeX left delimiter helper is removed during normalization."
+    },
+    {
+      "token": "\\right",
+      "normalized": "",
+      "python": "",
+      "kind": "grouping",
+      "description": "LaTeX right delimiter helper is removed during normalization."
+    },
+    {
+      "token": "\\text",
+      "normalized": "txt_<payload>",
+      "python": "txt_<payload>",
+      "kind": "function",
+      "description": "LaTeX text blocks are converted into parser-safe identifiers like txt_kg."
+    },
+    {
+      "token": "\\mathrm",
+      "normalized": "txt_<payload>",
+      "python": "txt_<payload>",
+      "kind": "function",
+      "description": "LaTeX roman-text blocks are converted into parser-safe identifiers like txt_kg."
+    },
+    {
+      "token": "\\operatorname",
+      "normalized": "txt_<payload>",
+      "python": "txt_<payload>",
+      "kind": "function",
+      "description": "LaTeX operatorname blocks are converted into parser-safe identifiers."
+    },
+    {
+      "token": "∑",
+      "normalized": "Sum",
+      "python": "sp.Sum(...)",
+      "kind": "function",
+      "description": "Summation is normalized to the SymPy Sum constructor."
+    },
+    {
+      "token": "Σ",
+      "normalized": "Sum",
+      "python": "sp.Sum(...)",
+      "kind": "function",
+      "description": "Uppercase sigma summation is normalized to the SymPy Sum constructor."
+    },
+    {
+      "token": "∫",
+      "normalized": "Integral",
+      "python": "sp.Integral(...)",
+      "kind": "function",
+      "description": "Integral notation is normalized to the SymPy Integral constructor."
+    },
+    {
+      "token": "∂",
+      "normalized": "d",
+      "python": "sp.Derivative(...)",
+      "kind": "function",
+      "description": "Partial derivative notation is rewritten into a SymPy Derivative expression when possible."
+    },
+    {
+      "token": "∇",
+      "normalized": "grad",
+      "python": "grad(...)",
+      "kind": "operator",
+      "description": "Nabla is normalized to a grad marker in the rewritten equation."
+    },
+    {
+      "token": "×",
+      "normalized": "cross",
+      "python": "cross(a, b)",
+      "kind": "operator",
+      "description": "Cross product notation is normalized to the named cross function."
+    },
+    {
+      "token": "Eq",
+      "normalized": "Eq",
+      "python": "sp.Eq(...)",
+      "kind": "function",
+      "description": "Explicit Eq(...) input is passed through as a SymPy equality."
+    },
+    {
+      "token": "Sum",
+      "normalized": "Sum",
+      "python": "sp.Sum(...)",
+      "kind": "function",
+      "description": "Summation uses SymPy's Sum constructor."
+    },
+    {
+      "token": "Integral",
+      "normalized": "Integral",
+      "python": "sp.Integral(...)",
+      "kind": "function",
+      "description": "Integrals use SymPy's Integral constructor."
+    },
+    {
+      "token": "sqrt",
+      "normalized": "sqrt",
+      "python": "sp.sqrt(...)",
+      "kind": "function",
+      "description": "Square root uses SymPy's sqrt function."
+    },
+    {
+      "token": "Abs",
+      "normalized": "Abs",
+      "python": "sp.Abs(...)",
+      "kind": "function",
+      "description": "Absolute value uses SymPy's Abs function."
+    },
+    {
+      "token": "conjugate",
+      "normalized": "conjugate",
+      "python": "sp.conjugate(...)",
+      "kind": "function",
+      "description": "Complex conjugates use SymPy's conjugate function."
+    },
+    {
+      "token": "Limit",
+      "normalized": "Limit(expr, var, point)",
+      "python": "sp.Limit(expr, var, point)",
+      "kind": "function",
+      "description": "Limit notation is rewritten to the SymPy Limit constructor."
+    },
+    {
+      "token": "Mod",
+      "normalized": "Mod(a, n)",
+      "python": "sp.Mod(a, n)",
+      "kind": "function",
+      "description": "Modular arithmetic is rewritten into SymPy Mod(a, n)."
+    },
+    {
+      "token": "Expectation",
+      "normalized": "Expectation(...)",
+      "python": "Expectation(...)",
+      "kind": "function",
+      "description": "Expectation notation E[...] is normalized into callable Expectation(...)."
+    },
+    {
+      "token": "Var",
+      "normalized": "Var(...)",
+      "python": "Var(...)",
+      "kind": "function",
+      "description": "Variance notation is represented as a symbolic Var(...) call."
+    },
+    {
+      "token": "Cov",
+      "normalized": "Cov(..., ...)",
+      "python": "Cov(..., ...)",
+      "kind": "function",
+      "description": "Covariance notation is represented as a symbolic Cov(...) call."
+    },
+    {
+      "token": "Pr",
+      "normalized": "Pr(...)",
+      "python": "Pr(...)",
+      "kind": "function",
+      "description": "Probability notation is represented as a symbolic Pr(...) call."
+    },
+    {
+      "token": "argmin",
+      "normalized": "argmin(expr)",
+      "python": "argmin(expr)",
+      "kind": "function",
+      "description": "Optimization argmin is normalized into callable argmin(expr)."
+    },
+    {
+      "token": "argmax",
+      "normalized": "argmax(expr)",
+      "python": "argmax(expr)",
+      "kind": "function",
+      "description": "Optimization argmax is normalized into callable argmax(expr)."
+    },
+    {
+      "token": "pi",
+      "normalized": "pi",
+      "python": "sp.pi",
+      "kind": "constant",
+      "description": "ASCII pi uses the built-in SymPy constant."
+    },
+    {
+      "token": "oo",
+      "normalized": "oo",
+      "python": "sp.oo",
+      "kind": "constant",
+      "description": "ASCII infinity token uses the built-in SymPy constant."
+    }
+  ]
+}

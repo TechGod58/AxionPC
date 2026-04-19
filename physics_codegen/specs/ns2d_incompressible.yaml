@@ -1,0 +1,12 @@
+template: ns2d_incompressible
+domain:
+  Lx: 1.0
+  Ly: 1.0
+  nx: 128
+  ny: 128
+params:
+  rho: 1.0
+  nu: 0.001
+time:
+  dt: 0.01
+  t_end: 1.0

@@ -1,0 +1,37 @@
+{
+  "template": "wave_1d_forced",
+  "target": "python_stdlib",
+  "domain": {
+    "L": 1.0,
+    "nx": 401
+  },
+  "params": {
+    "c": 1.0,
+    "gamma": 0.02
+  },
+  "time": {
+    "dt": 0.001,
+    "t_end": 1.0
+  },
+  "bcs": {
+    "type": "dirichlet"
+  },
+  "initial_conditions": {
+    "type": "gaussian",
+    "x0": 0.5,
+    "sigma": 0.05,
+    "amplitude": 1.0
+  },
+  "forcing": {
+    "type": "sine",
+    "amplitude": 0.5,
+    "omega": 6.283185307179586,
+    "k": 6.283185307179586
+  },
+  "regime": {
+    "reject_unstable": true
+  },
+  "prune": {
+    "threshold": 0.001
+  }
+}

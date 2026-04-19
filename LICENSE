@@ -1,0 +1,23 @@
+AXION EDUCATIONAL USE LICENSE v1.0
+Copyright (c) 2026 John T Straub. All rights reserved.
+
+This repository and all included source code, scripts, documentation, and assets are provided
+for educational use only.
+
+Permissions:
+1. You may view, run, and modify this material for personal learning and classroom-style study.
+2. You may share unmodified or modified copies only when the purpose is educational and this
+   license text is kept with the material.
+
+Restrictions:
+1. Commercial use is prohibited.
+2. Production use is prohibited.
+3. Selling, sublicensing, or offering this material as a paid service is prohibited.
+4. Use for model training, dataset creation, or redistribution in training corpora is prohibited
+   without prior written permission from the copyright holder.
+
+No warranty:
+This material is provided "AS IS", without warranty of any kind, express or implied. The author
+is not liable for any claim, damages, or other liability arising from its use.
+
+SPDX-License-Identifier: LicenseRef-Axion-Educational-Use-Only-1.0
