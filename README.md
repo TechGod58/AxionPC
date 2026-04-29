@@ -2,6 +2,12 @@
 
 Central workspace repository for AxionPC projects, tools, and supporting scripts.
 
+## Repository purpose
+
+AxionPC is an educational workspace for experimental project tools, with the current active focus on physics code generation and supporting scripts. The repository is public for visibility into the tooling and project structure.
+
+Use is governed by the repository license and licensing notice. Public visibility does not remove the educational-use boundary.
+
 ## Included Projects
 
 - `physics_codegen/` - Equation-to-Python converter with SymPy-backed parsing, rewrite debug output, and symbol/code conversion tables.
