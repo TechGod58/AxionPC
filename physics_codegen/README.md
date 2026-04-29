@@ -37,7 +37,7 @@ Or use:
 run_gui.bat
 ```
 
-## Build Windows release packages
+## Build a portable Windows app
 
 From the project folder:
 
@@ -49,13 +49,26 @@ build_portable.bat
 This creates:
 - `dist/AxionPhysicsCodegen/` (portable folder)
 - `dist/AxionPhysicsCodegen_portable.zip` (portable zip)
-- `dist/AxionPhysicsCodegen-Setup.msi` (per-user MSI installer)
 
 On a work PC, open the folder and double-click:
 - `Run_PhysicsCodegen.bat` or
 - `AxionPhysicsCodegen.exe`
 
-For the MSI installer workflow and WiX details, see:
+No installation is required for the portable build.
+
+## Optional MSI installer
+
+If you specifically want a Windows installer package:
+
+```powershell
+build_installer.bat
+```
+
+This additionally creates:
+
+- `dist/AxionPhysicsCodegen-Setup.msi`
+
+For the MSI workflow and WiX details, see:
 
 - `installer/INSTALLER_README.md`
 

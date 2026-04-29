@@ -1,5 +1,11 @@
 # AxionPhysicsCodegen MSI Installer
 
+This installer path is optional. The main portable workflow is still:
+
+- `build_portable.bat`
+
+Use this installer flow only when you want an `.msi` package.
+
 ## What changed
 
 These installer-related files now live in the repo:
@@ -7,7 +13,7 @@ These installer-related files now live in the repo:
 | File | Purpose |
 |------|---------|
 | `tools/windows_gui_entry.py` | Windowed entrypoint with crash logging and error dialogs |
-| `build_portable.bat` | Builds the PyInstaller app, portable zip, and MSI installer |
+| `build_installer.bat` | Builds the portable app first, then creates the MSI installer |
 | `installer/AxionPhysicsCodegen.wxs` | WiX source for the MSI |
 
 The `tools/Run_PhysicsCodegen.bat` file still supports the portable zip path, but the MSI shortcut points directly to the `.exe`.
@@ -30,14 +36,14 @@ Verify with:
 wix --version
 ```
 
-`build_portable.bat` will try to install WiX automatically if it is missing, but you may need to reopen the terminal afterward so the new PATH is available.
+`build_installer.bat` will try to install WiX automatically if it is missing, but you may need to reopen the terminal afterward so the new PATH is available.
 
 ## Running the build
 
 From the `physics_codegen` project root:
 
 ```powershell
-build_portable.bat
+build_installer.bat
 ```
 
 This produces three outputs in `dist\`:
@@ -82,7 +88,7 @@ It also shows a Tk message box if a startup exception occurs in a `--windowed` b
 - Creates a Start Menu shortcut pointing directly at `AxionPhysicsCodegen.exe`.
 - Works with the repo's payload generator so the MSI file list stays in sync with the PyInstaller output.
 
-### `build_portable.bat`
+### `build_installer.bat`
 
 The build runs in four stages:
 

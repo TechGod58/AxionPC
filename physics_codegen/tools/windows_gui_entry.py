@@ -23,7 +23,25 @@ from pathlib import Path
 APP_NAME = "AxionPhysicsCodegen"
 
 
+def _portable_log_dir() -> Path | None:
+    if not getattr(sys, "frozen", False):
+        return None
+    exe_dir = Path(sys.executable).resolve().parent
+    target = exe_dir / "userdata"
+    try:
+        target.mkdir(parents=True, exist_ok=True)
+        probe = target / ".write_test"
+        probe.write_text("ok", encoding="utf-8")
+        probe.unlink(missing_ok=True)
+        return target
+    except Exception:
+        return None
+
+
 def _log_dir() -> Path:
+    portable = _portable_log_dir()
+    if portable is not None:
+        return portable
     base = os.environ.get("LOCALAPPDATA") or str(Path.home() / "AppData" / "Local")
     target = Path(base) / APP_NAME
     target.mkdir(parents=True, exist_ok=True)

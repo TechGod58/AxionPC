@@ -25,7 +25,7 @@ Or:
 
   run_gui.bat
 
-Build Windows release packages:
+Build a portable Windows app:
 
   python -m pip install -r requirements-packaging.txt
   build_portable.bat
@@ -33,13 +33,21 @@ Build Windows release packages:
 Portable output:
 - dist\AxionPhysicsCodegen\
 - dist\AxionPhysicsCodegen_portable.zip
-- dist\AxionPhysicsCodegen-Setup.msi
 
 Launch on any Windows PC:
 - Run_PhysicsCodegen.bat
 - AxionPhysicsCodegen.exe
 
-MSI installer details:
+No installation is required for the portable build.
+
+Optional MSI installer:
+
+  build_installer.bat
+
+Additional installer output:
+- dist\AxionPhysicsCodegen-Setup.msi
+
+MSI details:
 - installer\INSTALLER_README.md
 
 Generate table JSON from the command line:
