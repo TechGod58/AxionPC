@@ -22,7 +22,7 @@ This project started around quantum/physics notation, but the current goal is br
 - `physics_codegen/data/conversion_catalog.json`: JSON-backed conversion catalog used by the GUI and CLI
 - `physics_codegen/data/symbol_definitions.json`: extensible Unicode/LaTeX mapping table used by the parser
 
-## Run the GUI
+## Run the GUI in Source Mode
 
 From the project folder:
 
@@ -36,6 +36,8 @@ Or use:
 ```powershell
 run_gui.bat
 ```
+
+After a portable build exists, `run_gui.bat` launches the bundled EXE first. It only falls back to source/developer mode when `dist/AxionPhysicsCodegen/AxionPhysicsCodegen.exe` is missing.
 
 ## Build a portable Windows app
 
@@ -54,7 +56,15 @@ On a work PC, open the folder and double-click:
 - `Run_PhysicsCodegen.bat` or
 - `AxionPhysicsCodegen.exe`
 
-No installation is required for the portable build.
+No installation is required for the portable build. The portable folder includes its own Python runtime plus the bundled SymPy parser/runtime pieces used by Generate.
+
+To verify the copied folder on another PC, double-click:
+
+- `Run_Portable_Self_Test.bat`
+
+It writes:
+
+- `userdata/portable_self_test.json`
 
 ## Optional MSI installer
 

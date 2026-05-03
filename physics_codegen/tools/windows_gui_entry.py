@@ -8,7 +8,8 @@ showing anything to the user. This wrapper:
 2. Installs a sys.excepthook that logs the traceback and shows a message box.
 3. Calls through to physics_codegen.gui.main() as before.
 
-Log location: %LOCALAPPDATA%\AxionPhysicsCodegen\error.log
+Portable log location: userdata\error.log beside the EXE when writable.
+Fallback log location: %LOCALAPPDATA%\AxionPhysicsCodegen\error.log
 """
 from __future__ import annotations
 
@@ -113,6 +114,15 @@ def _main() -> int:
     log_path = _install_logging()
     _install_excepthook(log_path)
     logging.info("%s starting, log=%s", APP_NAME, log_path)
+
+    if "--self-test" in sys.argv:
+        from physics_codegen.portable_check import write_portable_check_report
+
+        report_path = _log_dir() / "portable_self_test.json"
+        report = write_portable_check_report(report_path)
+        logging.info("Portable self-test complete, ok=%s, report=%s", report.get("ok"), report_path)
+        return 0 if report.get("ok") else 3
+
     from physics_codegen.gui import main
 
     return main() or 0

@@ -16,14 +16,17 @@ Key files:
 - physics_codegen\data\conversion_catalog.json
 - physics_codegen\data\symbol_definitions.json
 
-Run the GUI from the project folder:
+Run the GUI from the project folder in source/developer mode:
 
   python -m pip install -r requirements.txt
   python -m physics_codegen.cli gui
 
-Or:
+Or, after a portable build exists:
 
   run_gui.bat
+
+run_gui.bat launches dist\AxionPhysicsCodegen\AxionPhysicsCodegen.exe first.
+It only falls back to source/developer mode when the portable EXE is missing.
 
 Build a portable Windows app:
 
@@ -39,6 +42,11 @@ Launch on any Windows PC:
 - AxionPhysicsCodegen.exe
 
 No installation is required for the portable build.
+The portable folder includes its own Python runtime and bundled SymPy parser dependencies.
+
+Verify portability:
+- Run_Portable_Self_Test.bat
+- userdata\portable_self_test.json
 
 Optional MSI installer:
 

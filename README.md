@@ -15,7 +15,17 @@ Central workspace repository for AxionPC projects, tools, and supporting scripts
 
 ## Quick Start
 
-For the physics codegen app:
+For the portable physics codegen app:
+
+```powershell
+cd physics_codegen
+build_portable.bat
+dist\AxionPhysicsCodegen\AxionPhysicsCodegen.exe
+```
+
+The root `run_gui.bat` launches the portable EXE first when it exists, so a copied folder does not need Python installed.
+
+For source/developer mode:
 
 ```powershell
 cd physics_codegen

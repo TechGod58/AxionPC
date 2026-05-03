@@ -33,6 +33,12 @@ python -m PyInstaller ^
   --windowed ^
   --name "%APP_NAME%" ^
   --hidden-import=tkinter ^
+  --hidden-import=numpy ^
+  --hidden-import=yaml ^
+  --collect-submodules sympy ^
+  --collect-data sympy ^
+  --collect-submodules mpmath ^
+  --collect-data mpmath ^
   --exclude-module torch ^
   --exclude-module tensorflow ^
   --exclude-module sklearn ^
@@ -59,6 +65,7 @@ if not exist "%DIST_DIR%" (
 
 copy /Y "README.txt" "%DIST_DIR%\README.txt" >nul
 copy /Y "tools\Run_PhysicsCodegen.bat" "%DIST_DIR%\Run_PhysicsCodegen.bat" >nul
+copy /Y "tools\Run_Portable_Self_Test.bat" "%DIST_DIR%\Run_Portable_Self_Test.bat" >nul
 
 echo.
 echo [2/2] Creating portable zip...

@@ -2,10 +2,17 @@
 setlocal
 cd /d "%~dp0"
 
+set "PORTABLE_EXE=%~dp0dist\AxionPhysicsCodegen\AxionPhysicsCodegen.exe"
+if exist "%PORTABLE_EXE%" (
+  start "" "%PORTABLE_EXE%"
+  exit /b 0
+)
+
 python -c "import sympy, numpy, yaml" 1>nul 2>nul
 if errorlevel 1 (
   echo Missing required Python packages.
-  echo Run: python -m pip install -r requirements.txt
+  echo For portable use, run build_portable.bat and launch dist\AxionPhysicsCodegen\AxionPhysicsCodegen.exe.
+  echo For source/developer use, run: python -m pip install -r requirements.txt
   echo.
   pause
   endlocal
